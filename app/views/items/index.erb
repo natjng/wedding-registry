@@ -1,0 +1,11 @@
+'items/index'
+
+<h1>Your Items</h1>
+
+<p>
+<ul style="list-style-type:circle;">
+<% @user.items.each do |item| %>
+    <li><%= item.item_name %></li>
+<% end %>
+</ul>
+</p>
