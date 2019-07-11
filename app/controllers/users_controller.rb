@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     end
 
     post '/users/signup' do 
-        user = User.create(params)
-        
+        @user = User.new(params)
+        # change to .create?
+        # add username and password creation validations
+        # log user in after successful signup
     end
 
     get '/users/login' do 
