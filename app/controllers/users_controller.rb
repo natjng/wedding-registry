@@ -10,6 +10,11 @@ class UsersController < ApplicationController
         erb :'users/signup'
     end
 
+    post '/users/signup' do 
+        user = User.create(params)
+        
+    end
+
     get '/users/login' do 
         erb :'users/login'
     end
