@@ -46,6 +46,7 @@ class ItemsController < ApplicationController
 
     get '/items/:id/edit' do 
         @item = Item.find(params[:id])
+        @categories = Category.all
         erb :'items/edit'
     end
 
@@ -53,7 +54,8 @@ class ItemsController < ApplicationController
         @item = Item.find(params[:id])
             
         if !params[:name].empty? && !params[:category_id].empty?
-            @item.name = params[:name] @item.category_id = params[:category_id]
+            @item.name = params[:name]
+            @item.category_id = params[:category_id]
             @item.save
 
             redirect "/items/#{@item.id}"
