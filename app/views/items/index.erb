@@ -5,7 +5,7 @@
 <p>
 <ul style="list-style-type:circle;">
 <% @user.items.each do |item| %>
-    <li><%= item.name %></li>
+    <li><a href="/items/<%= item.id %>"><%= item.name %></a></li>
 <% end %>
 </ul>
 </p>
