@@ -11,6 +11,18 @@ class ItemsController < ApplicationController
         erb :'items/new'
     end
 
+    post '/items' do 
+        # params[:name] != ""
+        if !params[:name].empty?
+            @item = Item.create(params)
+            @user = User.find(session[:user_id])
+            @user.items < @item
+            redirect "/items/#{@item.id}"
+        else
+            redirect '/items/new'
+        end
+    end
+
     get '/items/:id' do 
         @item = Item.find(params[:id])
         erb :'items/show'
