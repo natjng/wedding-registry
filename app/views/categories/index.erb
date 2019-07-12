@@ -6,7 +6,22 @@
 <p>
 <ul>
 <% @categories.each do |cat| %>
-<li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
+    <li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
+<% end %>
+</ul>
+</p>
+
+
+<h3><%= @user.username %>'s Registry Categories</h3>
+
+<p>
+<ul>
+<% categories = [] %>
+<% @user.items.each do |item| %>
+    <% categories << item.category %>
+<% end %>
+<% categories.uniq.each do |cat| %>
+    <li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
 <% end %>
 </ul>
 </p>
