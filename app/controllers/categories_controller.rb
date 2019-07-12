@@ -11,6 +11,15 @@ class CategoriesController < ApplicationController
         erb :'categories/new'
     end
 
+    post '/categories' do
+        if !params[:name].empty?
+            @category = Category.create(params)
+            redirect "/categories/#{@category.id}"
+        else
+            redirect 'categories/new'
+        end
+    end
+
     get '/categories/:id' do 
         @category = Category.find(params[:id])
         @user = User.find(3)
