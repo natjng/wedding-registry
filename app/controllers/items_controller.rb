@@ -40,7 +40,34 @@ class ItemsController < ApplicationController
 
     get '/items/:id' do 
         @item = Item.find(params[:id])
+        @categories = Category.all 
         erb :'items/show'
     end
 
+    get '/items/:id/edit' do 
+        @item = Item.find(params[:id])
+        erb :'items/edit'
+    end
+
+    patch '/items/:id' do 
+        @item = Item.find(params[:id])
+            
+        if !params[:name].empty? && !params[:category_id].empty?
+            @item.name = params[:name] @item.category_id = params[:category_id]
+            @item.save
+
+            redirect "/items/#{@item.id}"
+
+        elsif !params[:name].empty? && !params["category_name"].empty?
+            @item.name = params[:name]
+            @item.save
+
+            category = Category.create(params["category_name"])
+            category.items << @item
+
+            redirect "/items/#{@item.id}"
+        else
+            redirect "/items/#{@item.id}/edit"
+        end
+    end
 end
