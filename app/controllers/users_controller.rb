@@ -1,11 +1,4 @@
 class UsersController < ApplicationController
-    get '/users' do 
-        @user = User.find(1)
-        # change to User.find(session[:user_id])
-        erb :'users/show'
-        # need to change view later 'users/:id'
-    end
-
     get '/users/signup' do 
         erb :'users/signup'
     end
@@ -15,6 +8,8 @@ class UsersController < ApplicationController
         # change to .create?
         # add username and password creation validations
         # log user in after successful signup
+        session[:user_id] = @user.id
+        redirect '/users'
     end
 
     get '/users/login' do 
@@ -30,6 +25,11 @@ class UsersController < ApplicationController
         else
             redirect 'users/login'
         end
+    end
+
+    get '/users/:id' do 
+        @user = User.find(session[:user_id])
+        erb :'users/show'
     end
 
     get '/users/logout' do
