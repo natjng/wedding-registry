@@ -1,0 +1,9 @@
+'categories/show'
+<h1><%= @user.username %></h1>
+<h2><%= @category.name %></h2>
+
+<ul>
+<% @category.items.each do |item| %>
+    <li><%= item.name if item.user_id == @user.id %></li>
+<% end %>
+</ul>
