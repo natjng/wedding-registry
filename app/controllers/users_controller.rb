@@ -4,12 +4,14 @@ class UsersController < ApplicationController
     end
 
     post '/users/signup' do 
-        @user = User.new(params)
-        # change to .create?
+        if params[:username] == "" || params[:password] == ""
+            redirect '/users/signup'
+        else
+            @user = User.create(params)
+            session[:user_id] = @user.id
+            redirect "users/#{@user.id}"
+        end
         # add username and password creation validations
-        # log user in after successful signup
-        session[:user_id] = @user.id
-        redirect '/users'
     end
 
     get '/users/login' do 
@@ -20,8 +22,7 @@ class UsersController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            # redirect "users/#{@user.id}"
-            # create route
+            redirect "users/#{@user.id}"
         else
             redirect 'users/login'
         end
