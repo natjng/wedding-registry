@@ -1,0 +1,12 @@
+'items/show'
+<h1>Wedding Registry</h1>
+
+<h2><%= @item.name %></h2>
+
+<p>
+more item details...
+</p>
+
+<p>
+Category: <a href="/categories/<%= @item.category.id %>"><%= @item.category.name %></a><br />
+</p>
