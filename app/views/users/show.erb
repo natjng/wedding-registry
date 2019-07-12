@@ -12,14 +12,16 @@
 <% end %>
 </ul>
 </p>
-
+<!--
 <p>
 <% categories = [] %>
 <% @user.items.each do |item| %>
 <% categories << item.category %>
 <% end %>
 <ul>
-<% categories.uniq.each do |cat| %>
+-->
+
+<% @user.categories.uniq.each do |cat| %>
     <h3><li><%= cat.name %></li></h3>
     <% cat.items.each do |item| %>
         <li><%= item.name if item.user_id == @user.id %></li>
@@ -27,3 +29,4 @@
 <% end %>
 </ul>
 </p>
+
