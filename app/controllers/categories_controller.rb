@@ -33,6 +33,14 @@ class CategoriesController < ApplicationController
         erb :'categories/edit'
     end
 
-
+    patch '/categories/:id' do 
+        @category = Category.find(params[:id])
+        if !params[:name].empty?
+            @category.update(params)
+            redirect "/categories/#{@category.id}"
+        else
+            redirect 'categories/#{@category.id}/edit'
+        end
+    end
 
 end
