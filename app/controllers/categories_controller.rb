@@ -6,4 +6,15 @@ class CategoriesController < ApplicationController
 
         # edit to show categories for users items in their registry
     end
+
+
+
+    get '/categories/:id' do 
+        @category = Category.find(params[:id])
+        @user = User.find(3)
+        # change to @user = session[:user_id]
+
+        erb :'categories/show'
+    end
+
 end
