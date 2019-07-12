@@ -1,0 +1,23 @@
+<h1>Edit Item</h1>
+
+<form action="/items/<%= @item.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
+<h3><label for="name">Item</label></h3>
+<input type="text" id="name" name="name" value="<%= @item.name %>" /><br />
+
+<h3><label>Category </label></h3>
+<ul>
+<% @categories.each do |cat| %>
+    <li><input type="radio" id="<%= cat.id %>" name="category_id" value="<%= cat.id %>" <%= 'checked' if @item.category == cat %> ><%= cat.name  %></input></li>
+<% end %>
+<label>or make a new category <input type="text" id="category_name" name="category_name" /></label>
+</ul>
+<br />
+
+<button type="submit" id="submit">Update Item</button>
+
+</form>
+
+Purchased
+Purchased by:
