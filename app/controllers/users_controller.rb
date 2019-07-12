@@ -28,14 +28,14 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/users/:id' do 
-        @user = User.find(session[:user_id])
-        erb :'users/show'
-    end
-
     get '/users/logout' do
         session.clear
         redirect '/'
+    end
+
+    get '/users/:id' do 
+        @user = User.find(session[:user_id])
+        erb :'users/show'
     end
 
 end
