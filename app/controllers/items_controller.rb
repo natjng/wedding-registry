@@ -7,7 +7,9 @@ class ItemsController < ApplicationController
         # show all users items
     end
 
-    
+    get '/items/new' do 
+        erb :'items/new'
+    end
 
     get '/items/:id' do 
         @item = Item.find(params[:id])
