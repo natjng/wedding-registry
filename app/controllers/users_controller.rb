@@ -4,14 +4,13 @@ class UsersController < ApplicationController
     end
 
     post '/users/signup' do 
-        if params[:username] == "" || params[:password] == ""
+        if params[:username] == "" || params[:username] == User.find_by(username: params[:username]).username || params[:password] == ""
             redirect '/users/signup'
         else
             @user = User.create(params)
             session[:user_id] = @user.id
             redirect "users/#{@user.id}"
         end
-        # add username and password creation validations
     end
 
     get '/users/login' do 
