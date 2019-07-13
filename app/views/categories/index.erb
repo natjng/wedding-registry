@@ -1,16 +1,5 @@
-'categories/index'
-
 <h1>Wedding Registry</h1>
-<h1>Categories</h1>
-
-<p>
-<ul>
-<% @categories.each do |cat| %>
-    <li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
-<% end %>
-</ul>
-</p>
-
+<h2>Categories</h2>
 
 <h3><%= @user.username %>'s Registry Categories</h3>
 
