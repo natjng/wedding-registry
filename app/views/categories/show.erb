@@ -7,12 +7,13 @@
 <% end %>
 </ul>
 
-
+<p>
 <form action="/categories/<%= @category.id %>/edit" method="get">
-<button type="submit" id="edit">Edit</button>
+<button type="submit" id="edit">Edit Category</button>
 </form>
 
 <form action="/categories/<%= @category.id %>" method="post">
 <input id="hidden" type="hidden" name="_method" value="delete">
-<button type="submit" id="delete">Delete</button>
+<button type="submit" id="delete">Delete Category</button>
 </form>
+</p>
