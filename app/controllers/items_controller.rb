@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
     end
 
     get '/items/:id' do 
+        @user = User.find(session[:user_id])
         @item = Item.find(params[:id])
         @categories = Category.all 
         erb :'items/show'
@@ -71,4 +72,13 @@ class ItemsController < ApplicationController
             redirect "/items/#{@item.id}/edit"
         end
     end
+
+    delete '/items/:id' do 
+        @item = Item.find(params[:id])
+        @item.destroy
+        redirect '/items'
+
+        # edit to only allow users to delete own items
+    end
+
 end
