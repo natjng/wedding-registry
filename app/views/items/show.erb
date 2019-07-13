@@ -11,7 +11,7 @@ Category: <a href="/categories/<%= @item.category.id %>"><%= @item.category.name
 <button type="submit" id="edit">Edit</button>
 </form>
 
-<form action="/items/<%= @item.id %>/delete" method="post">
+<form action="/items/<%= @item.id %>" method="post">
 <input id="hidden" type="hidden" name="_method" value="delete">
 <button type="submit" id="delete">Delete</button>
 </form>
