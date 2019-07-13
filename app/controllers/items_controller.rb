@@ -45,20 +45,19 @@ class ItemsController < ApplicationController
 
     patch '/items/:id' do 
         @item = Item.find(params[:id])
-            
-        if !params[:name].empty? && !params[:category_id].empty?
+
+        if !params[:name].empty? && params["category_name"] != ""
+            @item.name = params[:name]
+            @item.save
+
+            @category = Category.find_or_create_by(name: params[:category_name])
+            @category.items << @item
+
+            redirect "/items/#{@item.id}"
+        elsif !params[:name].empty? && !!params[:category_id]
             @item.name = params[:name]
             @item.category_id = params[:category_id]
             @item.save
-
-            redirect "/items/#{@item.id}"
-
-        elsif !params[:name].empty? && !params["category_name"].empty?
-            @item.name = params[:name]
-            @item.save
-
-            category = Category.create(params["category_name"])
-            category.items << @item
 
             redirect "/items/#{@item.id}"
         else
