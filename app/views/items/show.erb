@@ -1,12 +1,17 @@
-'items/show'
-<h1>Wedding Registry</h1>
+<h1><%= @user.username %>'s Wedding Registry</h1>
 
 <h2><%= @item.name %></h2>
 
 <p>
-more item details...
-</p>
-
-<p>
 Category: <a href="/categories/<%= @item.category.id %>"><%= @item.category.name %></a><br />
 </p>
+
+<a href="/items/<%= @item.id %>/edit">Edit</a>
+<form action="/items/<%= @item.id %>/edit" method="get">
+<button type="submit" id="edit">Edit</button>
+</form>
+
+<form action="/items/<%= @item.id %>/delete" method="post">
+<input id="hidden" type="hidden" name="_method" value="delete">
+<button type="submit" id="delete">Delete</button>
+</form>
