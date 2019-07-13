@@ -22,9 +22,7 @@ class CategoriesController < ApplicationController
 
     get '/categories/:id' do 
         @category = Category.find(params[:id])
-        @user = User.find(3)
-        # change to @user = session[:user_id]
-
+        @user = User.find(session[:user_id])
         erb :'categories/show'
     end
 
