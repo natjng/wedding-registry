@@ -3,9 +3,10 @@
 
 <ul>
 <% @category.items.each do |item| %>
-    <li><%= item.name if item.user_id == @user.id %></li>
+    <a href="/items/<%= item.id %>"><li><%= item.name if item.user_id == @user.id %></li></a>
 <% end %>
 </ul>
+
 
 <form action="/categories/<%= @category.id %>/edit" method="get">
 <button type="submit" id="edit">Edit</button>
