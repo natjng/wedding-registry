@@ -1,9 +1,6 @@
-'users/show'
 <h1>Your Wedding Registry</h1>
-<!--
 <h1>Wedding Registry for <%= @user.username %></h1>
 <h1><%= @user.username.capitalize %>'s Wedding Registry</h1>
--->
 
 <p>
 <ul>
@@ -12,15 +9,8 @@
 <% end %>
 </ul>
 </p>
-<!--
-<p>
-<% categories = [] %>
-<% @user.items.each do |item| %>
-<% categories << item.category %>
-<% end %>
-<ul>
--->
 
+<p>
 <% @user.categories.uniq.each do |cat| %>
     <h3><li><%= cat.name %></li></h3>
     <% cat.items.each do |item| %>
@@ -30,3 +20,6 @@
 </ul>
 </p>
 
+<p>
+<a href="/users/logout">Log Out</a>
+</p>
