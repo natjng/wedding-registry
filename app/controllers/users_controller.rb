@@ -36,13 +36,22 @@ class UsersController < ApplicationController
     end
 
     get '/users/logout' do
-        session.clear
-        redirect '/'
+        if logged_in?
+            session.clear
+            redirect '/'
+        else
+            redirect 'users/login'
+        end
     end
 
     get '/users/:id' do 
-        @user = User.find(session[:user_id])
-        erb :'users/show'
+        if logged_in?
+        # @user = User.find(session[:user_id])
+            @current_user
+            erb :'users/show'
+        else
+            redirect 'users/login'
+        end
     end
 
 end
