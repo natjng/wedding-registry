@@ -6,12 +6,13 @@
 Category: <a href="/categories/<%= @item.category.id %>"><%= @item.category.name %></a><br />
 </p>
 
-<a href="/items/<%= @item.id %>/edit">Edit</a>
+<p>
 <form action="/items/<%= @item.id %>/edit" method="get">
-<button type="submit" id="edit">Edit</button>
+<button type="submit" id="edit">Edit Item</button>
 </form>
 
 <form action="/items/<%= @item.id %>" method="post">
 <input id="hidden" type="hidden" name="_method" value="delete">
-<button type="submit" id="delete">Delete</button>
+<button type="submit" id="delete">Delete Item</button>
 </form>
+</p>
