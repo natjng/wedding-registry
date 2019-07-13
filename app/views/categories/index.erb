@@ -1,16 +1,14 @@
 <h1>Wedding Registry</h1>
 <h2>Categories</h2>
 
-<h3><%= @user.username %>'s Registry Categories</h3>
+<h3><%= @current_user.username %>'s Registry Categories</h3>
 
 <p>
 <ul>
-<% categories = [] %>
-<% @user.items.each do |item| %>
-    <% categories << item.category %>
-<% end %>
-<% categories.uniq.each do |cat| %>
+
+<% @current_user.categories.uniq.each do |cat| %>
     <li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
 <% end %>
+
 </ul>
 </p>
