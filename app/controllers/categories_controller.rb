@@ -41,4 +41,12 @@ class CategoriesController < ApplicationController
         end
     end
 
+    delete '/categories/:id' do 
+        @category = Category.find(params[:id])
+        @category.destroy
+        redirect '/categories'
+
+        # edit to only allow users to delete own categories
+    end
+
 end
