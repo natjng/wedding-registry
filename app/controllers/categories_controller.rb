@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
             @category.update(name: params[:name])
             redirect "/categories/#{@category.id}"
         else
-            redirect 'categories/#{@category.id}/edit'
+            redirect "categories/#{@category.id}/edit"
         end
     end
 
