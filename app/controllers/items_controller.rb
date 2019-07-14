@@ -72,11 +72,13 @@ class ItemsController < ApplicationController
     end
 
     delete '/items/:id' do 
-        @item = Item.find(params[:id])
-        @item.destroy
-        redirect '/items'
-
-        # edit to only allow users to delete own items
+        if logged_in?
+            @item = Item.find(params[:id])
+            @item.destroy
+            redirect '/items'
+        else
+            redirect 'users/login'
+        end
     end
 
 end
