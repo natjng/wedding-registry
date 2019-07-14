@@ -72,4 +72,8 @@ class CategoriesController < ApplicationController
         end
     end
 
+    get '/categories/' do 
+        redirect '/categories'
+    end
+
 end
