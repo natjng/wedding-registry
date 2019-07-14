@@ -5,9 +5,9 @@
 <h3><label for="name">Item</label></h3>
 <input type="text" id="name" name="name" /><br />
 
-<h3><label>Category </label></h3>
+<h3><label>Category</label></h3>
 <ul>
-<% @categories.each do |cat| %>
+<% current_user.categories.uniq.each do |cat| %>
     <li><input type="radio" id="<%= cat.id %>" name="category_id" value="<%= cat.id %>"><%= cat.name  %></input></li>
 <% end %>
 <label>or make a new category <input type="text" id="category_name" name="category_name" /></label>
