@@ -1,14 +1,10 @@
 <h1>Wedding Registry</h1>
 <h2>Categories</h2>
 
-<h3><%= @current_user.username %>'s Registry Categories</h3>
-
 <p>
 <ul>
-
 <% @current_user.categories.uniq.each do |cat| %>
     <li><a href="/categories/<%= cat.id %>"><%= cat.name %></a></li>
 <% end %>
-
 </ul>
 </p>
