@@ -27,7 +27,8 @@ class CategoriesController < ApplicationController
     get '/categories/:id' do 
         if logged_in?
             @category = Category.find_by_id(params[:id])
-            if @category
+            @user_cat = current_user.categories.any?{|cat| cat == @category}
+            if @category && @user_cat
                 erb :'categories/show'
             else
                 redirect '/categories'
@@ -39,8 +40,13 @@ class CategoriesController < ApplicationController
 
     get '/categories/:id/edit' do
         if logged_in?
-            @category = Category.find(params[:id])
-            erb :'categories/edit'
+            @category = Category.find_by_id(params[:id])
+            @user_cat = current_user.categories.any?{|cat| cat == @category}
+            if @category && @user_cat
+                erb :'categories/edit'
+            else
+                redirect '/categories'
+            end
         else
             redirect 'users/login'
         end
