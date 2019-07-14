@@ -28,7 +28,6 @@ class CategoriesController < ApplicationController
         if logged_in?
             @category = Category.find_by_id(params[:id])
             if @category
-                @user = User.find(session[:user_id])
                 erb :'categories/show'
             else
                 redirect '/categories'
