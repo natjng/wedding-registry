@@ -8,8 +8,11 @@ class ItemsController < ApplicationController
     end
 
     get '/items/new' do 
-        @categories = Category.all
-        erb :'items/new'
+        if logged_in?
+            erb :'items/new'
+        else
+            redirect 'users/login'
+        end
     end
 
     post '/items' do 
