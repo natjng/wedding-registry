@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
     patch '/categories/:id' do 
         @category = Category.find(params[:id])
         if !params[:name].empty?
-            @category.update(params)
+            @category.update(name: params[:name])
             redirect "/categories/#{@category.id}"
         else
             redirect 'categories/#{@category.id}/edit'
@@ -54,14 +54,16 @@ class CategoriesController < ApplicationController
     end
 
     delete '/categories/:id' do
-        if logged_in? 
+        if logged_in?
             @category = Category.find(params[:id])
-            @category.destroy
+            @user_items_include_cat = current_user.items.detect{|item| item.category_id == @category.id}
+            if @category && @user_items_include_cat
+                @category.destroy
+            end
             redirect '/categories'
         else
             redirect 'users/login'
         end
-        # edit to only allow users to delete own categories
     end
 
 end
