@@ -26,9 +26,13 @@ class CategoriesController < ApplicationController
 
     get '/categories/:id' do 
         if logged_in?
-            @category = Category.find(params[:id])
-            @user = User.find(session[:user_id])
-            erb :'categories/show'
+            @category = Category.find_by_id(params[:id])
+            if @category
+                @user = User.find(session[:user_id])
+                erb :'categories/show'
+            else
+                redirect '/categories'
+            end
         else
             redirect 'users/login'
         end
@@ -54,13 +58,13 @@ class CategoriesController < ApplicationController
     end
 
     delete '/categories/:id' do
+        @category = Category.find(params[:id])
         if logged_in?
-            @category = Category.find(params[:id])
-            @user_items_include_cat = current_user.items.detect{|item| item.category_id == @category.id}
-            if @category && @user_items_include_cat
+            if @category
                 @category.destroy
+            else
+                redirect '/categories'
             end
-            redirect '/categories'
         else
             redirect 'users/login'
         end
