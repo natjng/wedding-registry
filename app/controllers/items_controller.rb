@@ -33,16 +33,24 @@ class ItemsController < ApplicationController
     end
 
     get '/items/:id' do 
-        @user = User.find(session[:user_id])
-        @item = Item.find(params[:id])
-        @categories = Category.all 
-        erb :'items/show'
+        if logged_in?
+            @user = User.find(session[:user_id])
+            @item = Item.find(params[:id])
+            @categories = Category.all 
+            erb :'items/show'
+        else
+            redirect 'users/login'
+        end
     end
 
     get '/items/:id/edit' do 
-        @item = Item.find(params[:id])
-        @categories = Category.all
-        erb :'items/edit'
+        if logged_in?
+            @item = Item.find(params[:id])
+            @categories = Category.all
+            erb :'items/edit'
+        else
+            redirect 'users/login'
+        end
     end
 
     patch '/items/:id' do 
