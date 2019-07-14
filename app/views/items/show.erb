@@ -1,7 +1,13 @@
 <h1><%= @item.name %></h1>
 
 <p>
-Category: <a href="/categories/<%= @item.category.id %>"><%= @item.category.name %></a><br />
+Category: <a href="/categories/<%= @item.category.id if @item.category%>">
+<% if @item.category %>
+    <%= @item.category.name %>
+<% else %>
+    <%="None"%>
+<% end %>
+</a><br />
 </p>
 
 <p>
