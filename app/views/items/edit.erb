@@ -8,7 +8,7 @@
 
 <h3><label>Category </label></h3>
 <ul>
-<% @categories.each do |cat| %>
+<% current_user.categories.uniq.each do |cat| %>
     <li><input type="radio" id="<%= cat.id %>" name="category_id" value="<%= cat.id %>" <%= 'checked' if @item.category == cat %> ><%= cat.name  %></input></li>
 <% end %>
 <label>or make a new category <input type="text" id="category_name" name="category_name" /></label>
@@ -18,6 +18,3 @@
 <button type="submit" id="submit">Update Item</button>
 
 </form>
-
-Purchased
-Purchased by:
