@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
-    get '/items' do 
-        @user = User.find(session[:user_id])
-        @items = Item.all
-        erb :'items/index'
-        # show all users items
+    get '/items' do
+        if logged_in?
+            erb :'items/index'
+        else
+            redirect 'users/login'
+        end
     end
 
     get '/items/new' do 
