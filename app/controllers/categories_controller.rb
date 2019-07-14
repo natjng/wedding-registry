@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
 
     post '/categories' do
         if !params[:name].empty?
-            @category = Category.create(params)
+            @category = Category.find_or_create_by(params)
             redirect "/categories/#{@category.id}"
         else
             redirect 'categories/new'
