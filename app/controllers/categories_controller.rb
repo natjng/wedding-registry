@@ -25,14 +25,22 @@ class CategoriesController < ApplicationController
     end
 
     get '/categories/:id' do 
-        @category = Category.find(params[:id])
-        @user = User.find(session[:user_id])
-        erb :'categories/show'
+        if logged_in?
+            @category = Category.find(params[:id])
+            @user = User.find(session[:user_id])
+            erb :'categories/show'
+        else
+            redirect 'users/login'
+        end
     end
 
     get '/categories/:id/edit' do
-        @category = Category.find(params[:id])
-        erb :'categories/edit'
+        if logged_in?
+            @category = Category.find(params[:id])
+            erb :'categories/edit'
+        else
+            redirect 'users/login'
+        end
     end
 
     patch '/categories/:id' do 
@@ -45,11 +53,14 @@ class CategoriesController < ApplicationController
         end
     end
 
-    delete '/categories/:id' do 
-        @category = Category.find(params[:id])
-        @category.destroy
-        redirect '/categories'
-
+    delete '/categories/:id' do
+        if logged_in? 
+            @category = Category.find(params[:id])
+            @category.destroy
+            redirect '/categories'
+        else
+            redirect 'users/login'
+        end
         # edit to only allow users to delete own categories
     end
 
