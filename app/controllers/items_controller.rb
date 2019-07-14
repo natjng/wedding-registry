@@ -16,18 +16,16 @@ class ItemsController < ApplicationController
     end
 
     post '/items' do 
-        @user = User.find(session[:user_id])
-
         if !params[:name].empty? && params["category_name"] != ""
             @item = Item.create(name: params[:name])
-            @user.items << @item
+            current_user.items << @item
             @category = Category.find_or_create_by(name: params[:category_name])
             # use find_or_create_by so user does not create duplicate categories
             @category.items << @item
             redirect "/items/#{@item.id}"
         elsif !params[:name].empty? && !!params[:category_id]
             @item = Item.create(name: params[:name], category_id: params[:category_id])
-            @user.items << @item
+            current_user.items << @item
             redirect "/items/#{@item.id}"
         else
             redirect '/items/new'
