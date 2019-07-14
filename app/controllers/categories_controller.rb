@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
     get '/categories' do 
         if logged_in?
-            @current_user = current_user
             erb :'categories/index'
         else
             redirect 'users/login'
@@ -9,7 +8,11 @@ class CategoriesController < ApplicationController
     end
 
     get '/categories/new' do 
-        erb :'categories/new'
+        if logged_in?
+            erb :'categories/new'
+        else
+            redirect 'users/login'
+        end
     end
 
     post '/categories' do
