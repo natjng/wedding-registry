@@ -1,21 +1,23 @@
 <h1>Your Wedding Registry</h1>
-<h1>Wedding Registry for <%= @current_user.username %></h1>
-<h1><%= @current_user.username.capitalize %>'s Wedding Registry</h1>
+<h1>Wedding Registry for <%= @user.username %></h1>
+<h1><%= @user.username.capitalize %>'s Wedding Registry</h1>
 
+<h2>All Items</h2>
 <p>
 <ul>
-<% @current_user.items.each do |item| %>
+<% @user.items.each do |item| %>
 <li><%= item.name %></li>
 <% end %>
 </ul>
 </p>
 
+<h2>Items with Categories</h2>
 <p>
-<% @current_user.categories.uniq.each do |cat| %>
+<% @user.categories.uniq.each do |cat| %>
     <h3><li><%= cat.name %></li></h3>
     <% cat.items.each do |item| %>
-        <li><%= item.name if item.user_id == @current_user.id %></li>
-    <% end %>
+        <li><%= item.name if item.user_id == @user.id %></li>
+    <% end %><br />
 <% end %>
 </ul>
 </p>
