@@ -58,13 +58,10 @@ class CategoriesController < ApplicationController
     end
 
     delete '/categories/:id' do
-        @category = Category.find(params[:id])
         if logged_in?
-            if @category
-                @category.destroy
-            else
-                redirect '/categories'
-            end
+            @category = Category.find(params[:id])
+            @category.destroy
+            redirect '/categories'
         else
             redirect 'users/login'
         end
