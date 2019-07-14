@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
             @item = Item.create(name: params[:name])
             current_user.items << @item
             @category = Category.find_or_create_by(name: params[:category_name])
-            # use find_or_create_by so user does not create duplicate categories
             @category.items << @item
             redirect "/items/#{@item.id}"
         elsif !params[:name].empty? && !!params[:category_id]
