@@ -1,6 +1,10 @@
 <h1>Wedding Registry</h1>
 <p>Hello, <%= @user.username %>!</p>
 
+<h3>
+<a href="/items/new"> + Add Item </a>
+</h3>
+
 <p>
 <ul>
 <% @user.categories.uniq.each do |cat| %>
