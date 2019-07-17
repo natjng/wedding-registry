@@ -10,7 +10,7 @@
 <% current_user.categories.uniq.each do |cat| %>
     <li><input type="radio" id="<%= cat.id %>" name="category_id" value="<%= cat.id %>"><%= cat.name  %></input></li>
 <% end %>
-<label>or make a new category <input type="text" id="category_name" name="category_name" /></label>
+<label>Make a new category <input type="text" id="category_name" name="category_name" /></label>
 </ul>
 <br />
 
