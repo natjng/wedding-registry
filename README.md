@@ -1,6 +1,6 @@
 # Wedding Registry 
 
-Wedding Registry is a simple Content Management System (CMS) that keeps track of registry items and their categories. This MVC app is built with Sinatra and Active Record and uses RESTful routes.
+Wedding Registry is a simple Content Management System that keeps track of registry items and their categories. This MVC app is built with Sinatra and Active Record.
 
 Users can start a wedding registry by creating an account and adding items. Users can create, view, edit, and delete their items.
 
